@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
-import About from '../About/About.js';
-import Start from '../NewGame/Start.js';
-import Home from '../Home/Home.js';
-import Game from '../Game/Game.js';
-import Saved from '../Saved/Saved.js';
-import './App.css';
-import GameOver from '../GameOver/GameOver.js';
+import { Routes, Route, Link, Navigate, useLocation } from 'react-router-dom'
+import About from '../About/About.js'
+import Start from '../NewGame/Start.js'
+import Home from '../Home/Home.js'
+import Game from '../Game/Game.js'
+import Saved from '../Saved/Saved.js'
+import './App.css'
+import GameOver from '../GameOver/GameOver.js'
 import CountDown from 'react-countdown'
 import data from '../data.json'
 
@@ -24,17 +24,17 @@ const App = () => {
     let randomIndex
   
     while (currentIndex != 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
+      randomIndex = Math.floor(Math.random() * currentIndex)
       currentIndex--
       [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
+      array[randomIndex], array[currentIndex]]
     }
   
-    return array;
+    return array
   }
 
   const saveCardForLater = (card) => {
-    const savedCardsCopy = savedCards.current;
+    const savedCardsCopy = savedCards.current
     savedCardsCopy.push(card)
     savedCards.current = savedCardsCopy
   }
@@ -49,12 +49,12 @@ const App = () => {
   }
 
   // countdown
-  const renderer = ({ hours, minutes, seconds, completed }) => {
+  const renderer = ({ minutes, seconds, completed }) => {
     if (completed) {
       setGameOver(true)
-      return <span>GAME OVER!</span>;
+      return <span>GAME OVER!</span>
     } else {
-      return <span>{minutes}:{seconds}</span>;
+      return <span>{minutes}:{seconds}</span>
     }
   }
 

@@ -6,9 +6,7 @@ import GameOver from "../GameOver/GameOver.js";
 const Game = ({ cardsData, shuffle, saveCardForLater, gameOver, resetTimer }) => {  
   const cardsFlipped = useRef(0)
   const correctGuesses = useRef(0)
-  const incorrectGuesses = useRef(0)
   const [carouselIndex, setCarouselIndex] = useState(0)
-  // const [carouselIndex, setCarouselIndex] = useState(0)
 
   const flipCard = () => {
     cardsFlipped.current = cardsFlipped.current + 1
@@ -17,16 +15,11 @@ const Game = ({ cardsData, shuffle, saveCardForLater, gameOver, resetTimer }) =>
   const addOneCorrect = () => {
     correctGuesses.current = correctGuesses.current + 1
   }
-  
-  const addOneIncorrect = () => {
-    incorrectGuesses.current = incorrectGuesses.current + 1
-  }
 
   const nextSlide = () => {
     setCarouselIndex(carouselIndex + 1)
   }
   
-
   const makeButtons = (currentSymbol) => {
     const answers = []
     answers.push(currentSymbol)
@@ -44,7 +37,6 @@ const Game = ({ cardsData, shuffle, saveCardForLater, gameOver, resetTimer }) =>
 
   const cards = shuffle(cardsData).map((card, index) => {
     const currentSymbol = card.symbol
-
 
     const answerButtons = makeButtons(currentSymbol)
     

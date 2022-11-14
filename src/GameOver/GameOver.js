@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
-import React, { useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react"
+import { useNavigate } from 'react-router-dom'
 
 const GameOver = ({cardsFlipped, correctGuesses, resetTimer}) => {
 
@@ -25,6 +25,5 @@ GameOver.propTypes = {
   correctGuesses: PropTypes.number,
   resetTimer: PropTypes.func
 }
-
 
 export default GameOver
