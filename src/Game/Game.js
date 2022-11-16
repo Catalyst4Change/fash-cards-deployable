@@ -1,24 +1,8 @@
-import React, {useRef, useState} from "react";
+import React from "react";
 import PropTypes from 'prop-types'
 import Card from "./Card/Card.js";
-import GameOver from "../GameOver/GameOver.js";
 
-const Game = ({ cardsData, shuffle, saveCardForLater, gameOver, resetTimer }) => {  
-  const cardsFlipped = useRef(0)
-  const correctGuesses = useRef(0)
-  const [carouselIndex, setCarouselIndex] = useState(0)
-
-  const flipCard = () => {
-    cardsFlipped.current = cardsFlipped.current + 1
-  }
-  
-  const addOneCorrect = () => {
-    correctGuesses.current = correctGuesses.current + 1
-  }
-
-  const nextSlide = () => {
-    setCarouselIndex(carouselIndex + 1)
-  }
+const Game = ({ cardsData, shuffle, saveCardForLater, gameOver, flipCard, addOneCorrect, nextSlide, carouselIndex, shuffledData }) => {  
   
   const makeButtons = (currentSymbol) => {
     const answers = []
@@ -35,8 +19,9 @@ const Game = ({ cardsData, shuffle, saveCardForLater, gameOver, resetTimer }) =>
     return answers
   }
 
-  const cards = shuffle(cardsData).map((card, index) => {
+  const cards = shuffledData.map((card, index) => {
     const currentSymbol = card.symbol
+    console.log(currentSymbol, index, carouselIndex);
 
     const answerButtons = makeButtons(currentSymbol)
     
@@ -48,7 +33,6 @@ const Game = ({ cardsData, shuffle, saveCardForLater, gameOver, resetTimer }) =>
         answerButtons={answerButtons} 
         flipCard={flipCard} 
         addOneCorrect={addOneCorrect} 
-        addOneIncorrect={addOneIncorrect} 
         saveCardForLater={saveCardForLater} 
         nextSlide={nextSlide}
         />
@@ -61,7 +45,6 @@ const Game = ({ cardsData, shuffle, saveCardForLater, gameOver, resetTimer }) =>
       <div className="carousel column">
         <div className="carousel-item column">
           {!gameOver && cards}
-          {gameOver && <GameOver cardsFlipped={cardsFlipped.current} correctGuesses={correctGuesses.current} resetTimer={resetTimer} />}
         </div>
       </div>
     </section>
@@ -73,7 +56,11 @@ Game.propTypes = {
   shuffle: PropTypes.func,
   saveCardForLater: PropTypes.func,
   gameOver: PropTypes.bool,
-  resetTimer: PropTypes.func
+  flipCard: PropTypes.func,
+  addOneCorrect: PropTypes.func,
+  nextSlide: PropTypes.func,
+  carouselIndex: PropTypes.number,
+  shuffledData: PropTypes.array
 }
 
 export default Game
